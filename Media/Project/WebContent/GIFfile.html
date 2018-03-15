@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	
+	<script>
+		
+		window.onload = function() {
+				var i = 1;
+				var j = 1;
+				document.getElementById("btn").onclick = function(){ //스크린샷 버튼 클릭
+			    	var canvars = document.createElement("canvas"); //캔버스생성
+			    	canvars.setAttribute("id", "myCanvas"+j); //id명 생성
+			    	j++;
+			    	
+			    	var vid = document.getElementById("vid"); //vid 가져오기
+			    	canvars.getContext("2d").drawImage(vid, 10, 10); //스크린샷~~
+			    	canvars.setAttribute("value", i);
+			    	
+			    	var btn = document.createElement("input"); //input 생성
+			    	btn.setAttribute("type", "button"); //type은 버튼
+			    	btn.setAttribute("value", "삭제"); //value 값 삭제
+			    	btn.setAttribute("onclick", "del("+i+")"); //type은 버튼
+			    	
+			    	
+			    	var childdiv = document.createElement("div"); //div 생성 (childdiv)
+			    	childdiv.setAttribute("id", "childdiv"+i); //id = childdiv+i
+			    	childdiv.setAttribute("style", "float: left;"); //float로 띄우기
+			    	
+			    	i++;
+			    	
+			    	var parentdiv = document.getElementById("parentdiv"); //parentdiv 가져오기
+			    	
+			    	childdiv.appendChild(canvars); //childdiv의 자식 캔퍼스 생성
+			    	childdiv.appendChild(btn); //캔퍼스와 형제 버튼 생성
+			    	
+			    	parentdiv.appendChild(childdiv); //parentdiv 자식 appendChild넣기
+		    	}
+				
+				/*
+				setInterval() -> 여러번
+				setTimeout() -> 한번
+				기본 javascript 자원과 jquery 혼용
+				*/
+				
+				document.getElementById("move").onclick = function(){
+					for(k = 1; k <= 2; k++){
+						var img = document.getElementById("myCanvas"+k);
+						console.log(img.id);
+					}
+					/* setInterval(function() {
+						var img = document.getElementsByClassName("myCanvas");
+						console.log(img[0].value);
+						
+						
+					}, 3000); */
+				}
+		}
+		
+		function del(number){
+			var childdiv = document.getElementById("childdiv"+number);
+			var parentdiv = document.getElementById("parentdiv");
+			
+			parentdiv.removeChild(childdiv);
+		}
+	</script>
+</head>
+<body>
+	<div style="float:left;">
+		<video id="vid" width="400" controls style="float:left">
+	  		<source src="videos/mov_bbb.mp4" type="video/mp4">
+		</video>
+		<br>
+		<input type="button" id="btn" value="스크린샷">
+		<input type="button" id="move" value="움짤만들기">
+	</div>
+		
+	<div id="movediv" style="float:right;">
+		<img width="420" height="345" src="images/main.jpg">
+	</div>
+	<hr style="clear: both;">
+	<p>당신이 고른 사진</p>
+	<div id="parentdiv"></div>
+</body>
+</html>
