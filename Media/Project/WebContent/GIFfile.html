@@ -41,27 +41,21 @@
 				기본 javascript 자원과 jquery 혼용
 				*/
 				
-				document.getElementById("btnmove").onclick = function(){
-					var canarr = [];
-					var number = 0;
-					for(k = 1; k <= j; k++){
-						if(document.getElementById("myCanvas"+k) != null){
-							canarr.push(document.getElementById("myCanvas"+k));
+				document.getElementById("btnmove").onclick = function(){ //버튼클릭
+					var canarr = []; //배열생성
+					var number = 0; //배열 인덱스
+					for(k = 1; k <= j; k++){ //배열 push
+						if(document.getElementById("myCanvas"+k) != null){ //만약 스크린샷을 찍고 삭제한게 있을 수 있기 때문
+							canarr.push(document.getElementById("myCanvas"+k)); //스크린샷 찍은 것들을 배열에 push
 						}
-						//var img = document.getElementById("myCanvas"+k);
-						//console.log(img.id);
 					}
-					//console.log(document.getElementById("var")==null); true
-					//var can = document.getElementById("myCanvas"+k);
-					//var canvas = document.getElementById("canmove");
-					//canvas.getContext("2d").drawImage(can, 10, 10);
 					
-					setInterval(function() {
-						var canvas = document.getElementById("canmove");
-						canvas.getContext("2d").drawImage(canarr[number], 10, 10);
+					setInterval(function() { //0.5초 마다 실행
+						var canvas = document.getElementById("canmove"); //캔버스
+						canvas.getContext("2d").drawImage(canarr[number], 10, 10); //캔버스에 이미지를 그리다
 						number++;
 						if(number >= canarr.length){
-							number = 0;
+							number = 0; //계속 돌아갈 수 있게
 						}
 					}, 500);
 				}
