@@ -13,7 +13,7 @@
 			    	j++;
 			    	
 			    	var vid = document.getElementById("vid"); //vid 가져오기
-			    	canvars.getContext("2d").drawImage(vid, 10, 10); //스크린샷~~
+			    	canvars.getContext("2d").drawImage(vid,10,10,295,160); //스크린샷~~
 			    	
 			    	var btn = document.createElement("input"); //input 생성
 			    	btn.setAttribute("type", "button"); //type은 버튼
@@ -70,10 +70,12 @@
 	</script>
 </head>
 <body>
-	<div style="float:left;">
-		<video id="vid" width="100%" controls style="float:left">
-	  		<source src="videos/mov_bbb.mp4" type="video/mp4">
-		</video>
+	<div style="float:left; " >
+		<div id = "vidframe"  style ="width: 500px;height: 350px">
+			<video id="vid" controls style="float:left; width: 100% ; height=100%">
+		  		<source  src="http://tomtom2k5.free.fr/mkv/720p/eatg_x264hd-sample.mkv" type="video/mp4">
+			</video>
+		</div>
 		<br>
 		<input type="button" id="btn" value="스크린샷">
 		<input type="button" id="btnmove" value="움짤만들기">
