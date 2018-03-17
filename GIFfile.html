@@ -43,18 +43,19 @@
 				*/
 				
 				var canarr = []; //배열생성
+				
 				document.getElementById("btnmove").onclick = function(){ //버튼클릭
-					for(k = 0; k<=canarr.length; k++){ // 움짤만들기 눌렀을 때 배열 값을 초기화 시키고 다시 생성
+					for(k = 0; k<=canarr.length; k++){ // 움짤만들기 눌렀을 때 배열 값을 pop() 시키고 다시 생성
 						canarr.pop();	// pop()해준다.
 					}
-					console.log(canarr);
+					// canarr = []; //초기화 간단한 방법
+					
 					var number = 0; //배열 인덱스
 					for(k = 1; k <= j; k++){ //배열 push
 						if(document.getElementById("myCanvas"+k) != null){ //만약 스크린샷을 찍고 삭제한게 있을 수 있기 때문
 							canarr.push(document.getElementById("myCanvas"+k)); //스크린샷 찍은 것들을 배열에 push
 						}
 					}
-					console.log(canarr);
 					setInterval(function() { //0.2초 마다 실행
 						var canvas = document.getElementById("canmove"); //캔버스
 						canvas.getContext("2d").drawImage(canarr[number], 10, 10); //캔버스에 이미지를 그리다
