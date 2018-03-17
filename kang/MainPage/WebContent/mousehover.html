@@ -43,9 +43,8 @@
               <li><a href="#">Screenshot</a></li>
             </ul>
           </li>
-          <li><a href="test1.html">자기소개</a></li>
+          <li><a href="#hangul">자기소개</a></li>
           <li><a href="mousehover.html">mousehover</a></li>
-          <li><a href="GIFfile.html">GIFfile</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
           <li><a href="about.html">About</a></li>
@@ -55,7 +54,21 @@
   </nav>
 
   <div class="container">
-    <object id="lorem" width="100%" height="2100px" data="pages/lorem.html"></object>
+    <video width="500px" height="400px"
+	       src = "videos/mov_bbb.mp4" poster="images/main.jpg"
+	       onmouseover="over(this)" onmouseout="out(this)">
+	</video>
+	
+	<script type="text/javascript">
+		function over(vid){
+			vid.play();
+		}
+		
+		function out(vid){
+			vid.pause();
+			vid.load();
+		}
+	</script>
   </div>
 
 </body>
