@@ -1,10 +1,140 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>Insert title here</title>
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+ <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<style type="text/css">
+
+
+</style>
+
+<script>
+/*jQuery form 플러그인을 사용하여 폼데이터를 ajax로 전송*/
+
+var downGroupCnt =0; //다운로드그룹 개수카운트
+
+$(function(){
+    
+    //폼전송 : 해당폼의 submit 이벤트가 발생했을경우 실행  
+    $('#multiform').ajaxForm({
+       cache: false,
+       dataType:"json",
+       //보내기전 validation check가 필요할경우
+       beforeSubmit: function (data, frm, opt) {
+           //console.log(data);
+           alert("전송전!!");
+           return true;
+       },
+       //submit이후의 처리
+       success: function(data, statusText){
+           
+           alert("전송성공!!");
+           console.log(data); //응답받은 데이터 콘솔로 출력         
+           //$("#result").empty(); //내용 비우기, 업로드 후 하나의 그룹만 볼려면 사용
+           
+           //업로드한 파일을 다운로드할수있도록 화면 구성
+           $("#result").append("<h3>("+(++downGroupCnt)+") 다운로드</h3>");
+           $("#result").append("제목:"+data.title+"<br/>");
+           $("#result").append("설명:"+data.description+"<br/>");
+         
+           if(data.photo){
+               $("#result").append("포토:<br/>");           
+               $.each(data.photo, function(index, item){
+                   var link = "FileDownload?f="+item.uploadedFileName+"&of="+item.fileName;
+                   $("#result").append("<a href='"+ link +"' download>"+item.fileName+"</a>");
+                   $("#result").append("<br/>");                   
+               });
+           }           
+           if(data.file){
+              var link = "FileDownload?f="+data.file.uploadedFileName+"&of="+data.file.fileName;
+              $("#result").append("파일 :<a href='"+ link +"' download>"+data.file.fileName+"</a>");
+              $("#result").append("<br/>");
+           }
+           
+           //다운로드시 크롬에서 다음 오류 발생.
+           //오류 : Resource interpreted as Document but transferred with MIME type 
+           //       application/octet-stream 
+           //해결 :
+           //You can specify the HTML5 download attribute in your <a> tag.
+           //<a href='http://example.com/archive.zip' download>Export</a>
+           //https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#attr-download
+                                 
+           $('#multiform')[0].reset(); //폼 초기화(리셋);
+           
+           //IE에서 폼 리셋후 input[type=file] 초기화 안되는 문제. 
+           //(파일이름은 지워지지만 files 프로퍼티에는 파일정보 남아있음.)
+           //참고 : http://javaking75.blog.me/220073388169
+           //console.log(navigator.userAgent);           
+           if (/(MSIE|Trident)/.test(navigator.userAgent)) {
+               // ie 일때 input[type=file] init.
+               $("#multiform input[type=file]").each(function(index){
+                   $(this).replaceWith( $(this).clone(true) );
+               });        
+           }
+       },
+       //ajax error
+       error: function(e){
+           alert("에러발생!!");
+           console.log(e);
+       }                               
+    });
+});
+
+</script>
+
 </head>
 <body>
-	dddd
+
+ <nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">3조</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="#">Home</a></li>
+      <li><a href="#">팀소개</a></li>
+      <li><a href="#">Page 2</a></li>
+      <li><a href="#">Page 3</a></li>
+    </ul>
+  </div>
+</nav>
+  
+<div class="container">
+  <h3>Basic  Example</h3>
+  <div>
+<!--    	<img id= "img1" src ="images/1.jpg" alt="사진없음" > 
+ 	<img id= "img2" src ="images/2.jpg" alt="사진없음" >  -->
+
+
+
+
+ 
+ 
+  </div>
+<form name="multiform" id="multiform" action="rece.jsp"
+                                      method="post" enctype="multipart/form-data">
+     
+    title: <input type="text" name="title"  value=""/> <br/>
+    description :<input type="text" name="description"  value="" /> <br/>
+    <!-- 다중 파일업로드  -->
+    photo :<input type="file" name="photo" /> <br/> 
+    photo :<input type="file" name="photo" /> <br/>
+    photo :<input type="file" name="photo" /> <br/>
+    
+    <!-- 단일 파일업로드 -->
+    file :<input type="file" name="file" /> <br/>
+    <input type="submit" id="btnSubmit" value="전송"/><br/>
+</form>    
+
+
+<div id="result">
+    
+</div>
+</div>
+
+
 </body>
 </html>
