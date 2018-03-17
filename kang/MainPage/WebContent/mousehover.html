@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Bitcamp 3조 - HOME</title>
+  <title>Bitcamp 3조 - mousehover</title>
   <meta charset="utf-8">
   <!-- 모바일 반응형을 위한 viewport 설정 -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -43,8 +43,9 @@
               <li><a href="#">Screenshot</a></li>
             </ul>
           </li>
-          <li><a href="#hangul">자기소개</a></li>
+          <li><a href="test1.html">자기소개</a></li>
           <li><a href="mousehover.html">mousehover</a></li>
+          <li><a href="GIFfile.html">GIFfile</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
           <li><a href="about.html">About</a></li>
@@ -54,16 +55,16 @@
   </nav>
 
   <div class="container">
-    <video width="500px" height="400px"
+    <video width="100%" height="100%"
 	       src = "videos/mov_bbb.mp4" poster="images/main.jpg"
 	       onmouseover="over(this)" onmouseout="out(this)">
 	</video>
-	
+
 	<script type="text/javascript">
 		function over(vid){
 			vid.play();
 		}
-		
+
 		function out(vid){
 			vid.pause();
 			vid.load();
