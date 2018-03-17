@@ -37,6 +37,7 @@
 				reader.onload = function(e){
 				
 				$("#img").attr("src",e.target.result);	
+				$("video").attr("src",e.target.result);	
 			
 				}
 				reader.readAsDataURL(f);
@@ -57,6 +58,7 @@
 	<div>
 		<div class = "img_wrap">
 			<img id ="img" src="">
+			<video id="video" src="" autoplay="autoplay"></video>
 		</div>
 	</div>
 	
