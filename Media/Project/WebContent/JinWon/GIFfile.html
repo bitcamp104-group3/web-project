@@ -4,6 +4,7 @@
 	<meta charset="UTF-8">
 	<title>Insert title here</title>
 	<script>
+		//수정
 		window.onload = function() {
 				var i = 1;
 				var j = 1;
@@ -13,7 +14,7 @@
 			    	j++;
 			    	
 			    	var vid = document.getElementById("vid"); //vid 가져오기
-			    	canvars.getContext("2d").drawImage(vid, 10, 10); //스크린샷~~
+			    	canvars.getContext("2d").drawImage(vid, 10,10,295,160); //스크린샷~~
 			    	
 			    	var btn = document.createElement("input"); //input 생성
 			    	btn.setAttribute("type", "button"); //type은 버튼
@@ -41,23 +42,28 @@
 				기본 javascript 자원과 jquery 혼용
 				*/
 				
+				var canarr = []; //배열생성
+				
 				document.getElementById("btnmove").onclick = function(){ //버튼클릭
-					var canarr = []; //배열생성
+					for(k = 0; k<=canarr.length; k++){ // 움짤만들기 눌렀을 때 배열 값을 pop() 시키고 다시 생성
+						canarr.pop();	// pop()해준다.
+					}
+					// canarr = []; //초기화 간단한 방법
+					
 					var number = 0; //배열 인덱스
 					for(k = 1; k <= j; k++){ //배열 push
 						if(document.getElementById("myCanvas"+k) != null){ //만약 스크린샷을 찍고 삭제한게 있을 수 있기 때문
 							canarr.push(document.getElementById("myCanvas"+k)); //스크린샷 찍은 것들을 배열에 push
 						}
 					}
-					
-					setInterval(function() { //0.5초 마다 실행
+					setInterval(function() { //0.2초 마다 실행
 						var canvas = document.getElementById("canmove"); //캔버스
 						canvas.getContext("2d").drawImage(canarr[number], 10, 10); //캔버스에 이미지를 그리다
 						number++;
 						if(number >= canarr.length){
 							number = 0; //계속 돌아갈 수 있게
 						}
-					}, 500);
+					}, 200);
 				}
 		}
 		
@@ -71,8 +77,8 @@
 </head>
 <body>
 	<div style="float:left;">
-		<video id="vid" width="400" controls style="float:left">
-	  		<source src="videos/mov_bbb.mp4" type="video/mp4">
+		<video id="vid" width="100%" controls style="float:left">
+	  		<source src="http://tomtom2k5.free.fr/mkv/720p/pearlharbor_x264hd-sample.mkv" type="video/mp4">
 		</video>
 		<br>
 		<input type="button" id="btn" value="스크린샷">
