@@ -1,10 +1,26 @@
+/* style about Scrollspy & Affix */
+body {
+  position: relative;
+}
+.affix {
+  top: 0;
+  width: 100%;
+  z-index: 9999;
+}
+.navbar {
+  margin-bottom: 0px;
+}
+.affix ~ .container-fluid {
+  position: relative;
+  top: 50px;
+}
+
 /* jumbotron */
 .jumbotron {
   margin: auto;
   background-image: url("../images/jumbotron_coding.png");
   background-size: cover;
   background-repeat: no-repeat;
-  opacity: 0.7;
 }
 
 /* text-center */
