@@ -8,20 +8,58 @@
 
   <!-- Bootstrap CSS 링크 -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <!-- index.html용 CSS 링크 -->
-  <link rel="stylesheet" type="text/css" href="css/main.css">
+  <!-- CSS 세부설정 변경을 위한 external CSS 링크 -->
+  <link rel="stylesheet" type="text/css" href="styles/main.css">
 
   <!-- jQuery library -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <!-- Bootstrap JavaScript 파일 -->
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+  <!-- 세부 Script -->
+  <script type="text/javascript">
+
+    $(function() {
+      // 캐릭터 이미지 파일 주소 배열
+      var characterArr = {
+        jumboPatrick: "images/patrick.png",
+        jumboRyan: "images/ryan.png",
+        jumboApeach: "images/apeach.png",
+        jumboNeo: "images/neo.png"
+      };
+      //캐릭터 이미지 변경 버튼 클릭 시
+      $('button.character').click(function() {
+        var characterId = $(this).attr('id');
+        $.each(characterArr, function(key, value) {
+          var characterUrl = 'url(' + value + ')';
+          if(key === characterId) {
+            $('.jumbotron').css('background-image', characterUrl);
+            $('.jumbotron').css('background-size', '200px 200px');
+            $('.jumbotron').css('background-position', 'right');
+          };
+        });
+      });
+
+    });
+
+    // iframe 자동 사이즈 조절
+    function autoResize(i) {
+        var iframeHeight = i.contentWindow.document.body.scrollHeight;
+        i.height = iframeHeight + 200;
+    };
+
+  </script>
 </head>
 <body data-spy="scroll" data-target=".navbar" data-offset="50">
 
   <!-- 상위 스크린 -->
   <div class="jumbotron">
+    <button class="character" id="jumboPatrick">PATRICK</button>
+    <button class="character" id="jumboRyan">RYAN</button>
+    <button class="character" id="jumboApeach">APEACH</button>
+    <button class="character" id="jumboNeo">NEO</button>
     <h1>{ Bitcamp Group 3 }</h1>
-    <p>We are going to be good developers!</p>
+    <p>Make it work! Make it right! Make it fast!</p>
   </div>
 
   <!-- 메뉴 바  -->
@@ -33,22 +71,23 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="index.html">비트캠프 3조</a>
+        <a class="navbar-brand" href="index.html">{ Bitcamp Group 3 }</a>
       </div>
       <div class="collapse navbar-collapse" id="myNavbar">
         <ul class="nav navbar-nav">
           <li class="dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown" href="#">WEB <span class="caret"></span></a>
             <ul class="dropdown-menu">
-              <li><a href="dragndrop.html">Drag&Drop</a></li>
-              <li><a href="mousehover.html">MouseHover</a></li>
-              <li><a href="GIFfile.html">GIFfile</a></li>
+              <li><a href="fileupload.html" target="contents">fileupload</a></li>
+              <li><a href="drag_drop.html" target="contents">Drag&Drop</a></li>
+              <li><a href="mousehover.html" target="contents">MouseHover</a></li>
+              <li><a href="GIFfile.html" target="contents">GIFfile</a></li>
             </ul>
           </li>
-          <li><a href="#" onclick="setCurrentPage('pageHello');">자기소개</a></li>
+          <li><a href="test1.html" target="contents">Introduce</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
-          <li><a href="about.html">About</a></li>
+          <li><a href="about.html" target="contents">About</a></li>
         </ul>
       </div>
     </div>
@@ -56,40 +95,8 @@
 
 <!-- 본문 내용 -->
   <div class="container">
-    <h2>Lorem Ipsum</h2>
-  	<p>
-  	Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed fringilla lacus nec ultrices tristique. Vivamus posuere mauris ipsum, at gravida lorem sollicitudin lacinia. Sed aliquet fermentum elit eu sodales. Quisque scelerisque vel dolor eu fermentum. Maecenas hendrerit cursus nunc, nec mattis mauris vestibulum ac. In quis gravida metus. Cras consectetur risus posuere mauris fermentum, ac bibendum ante sagittis. Aenean rhoncus dolor at libero ornare tempor. Quisque nec convallis nulla. Maecenas et mattis magna. Interdum et malesuada fames ac ante ipsum primis in faucibus. Duis non nunc quis leo dapibus rhoncus. Vivamus lobortis ex vitae dolor tempus posuere. Ut in odio elementum, pharetra ante ut, tincidunt quam. Maecenas sit amet viverra neque, eget dapibus lacus. Mauris sed urna eu tellus porttitor bibendum.
-  	</p>
-  	<p>
-  	Donec feugiat lectus eu mi tincidunt venenatis. Suspendisse ac ante non risus pharetra scelerisque in placerat erat. Quisque non ligula at neque auctor tempus in in risus. Quisque felis mi, interdum eget nibh id, tempus sagittis nulla. Phasellus blandit lectus sit amet nulla molestie, ut semper augue varius. Curabitur maximus, nibh ut interdum suscipit, sapien magna porta sem, eget euismod nisi nunc non dolor. Vivamus commodo dolor ut semper euismod. Sed leo nunc, malesuada non convallis vitae, ultricies a turpis. Morbi sollicitudin arcu nec orci dictum, a aliquam mauris accumsan. Vestibulum eros libero, fringilla quis dignissim et, malesuada nec nulla. Curabitur tempus, purus ut mattis tincidunt, erat urna tempus ipsum, sed posuere diam nisl at diam. Nulla vitae risus ac velit iaculis tincidunt eget vitae mauris. Morbi vulputate, mi eu interdum gravida, risus quam mollis massa, sit amet vulputate quam nibh sit amet risus. Etiam sit amet molestie purus, id eleifend diam. Sed dignissim posuere mattis. Vestibulum vel enim facilisis, eleifend augue quis, pulvinar ipsum.
-  	</p>
-  	<p>
-  	Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Etiam feugiat erat in ligula sodales vehicula. Mauris volutpat aliquam nibh, quis sagittis tortor pulvinar quis. Sed non justo massa. Nulla ut lorem in tortor luctus pellentesque convallis eu felis. Phasellus vitae nisl malesuada mi aliquam ornare vitae a odio. Nulla vestibulum, lacus non tempor volutpat, odio metus accumsan ante, sit amet rutrum est tellus et turpis. Praesent neque urna, condimentum ac est id, maximus imperdiet dolor. Integer laoreet sollicitudin ante a accumsan. Sed ultricies finibus purus vitae ultrices. Aliquam consequat massa eu nisl iaculis, at fringilla neque facilisis. Donec dapibus molestie dui. Pellentesque a luctus turpis, non viverra nibh. Morbi ac eros erat. Pellentesque euismod, eros et commodo commodo, tellus tortor efficitur tellus, ut pulvinar odio augue ut ex.
-  	</p>
-  	<p>
-  	Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis augue risus, dictum eget feugiat non, blandit et dolor. Proin laoreet egestas tincidunt. Etiam finibus non dolor non faucibus. Integer id pellentesque nibh. Praesent nibh mi, lobortis non arcu id, aliquet faucibus risus. Praesent at urna facilisis, malesuada risus vel, pulvinar neque. Phasellus ac dictum nunc, at varius erat. Vivamus massa odio, rutrum at bibendum nec, auctor nec ante. Donec eu arcu id elit rutrum sodales. Sed mollis arcu sit amet leo volutpat, in semper sapien faucibus. Nullam accumsan diam velit, ut tristique urna porta in. Sed sollicitudin turpis ut porttitor dignissim. Mauris aliquet nisi nec luctus dignissim.
-  	</p>
-  	<p>
-  	Aliquam accumsan sapien erat, non scelerisque neque accumsan eget. Etiam dictum luctus nisi sed porttitor. Ut auctor, lectus eu consectetur suscipit, nisl tellus feugiat quam, at consequat diam massa eu tortor. Integer erat est, pellentesque at velit in, tristique tristique lectus. Vivamus nec nisl a nulla venenatis ullamcorper tristique vel sem. Donec porttitor pulvinar facilisis. Maecenas vitae fermentum tortor. Donec fringilla varius massa non pellentesque. Nulla mollis laoreet tincidunt. Fusce dictum suscipit sagittis. Nulla nec scelerisque libero, ut rhoncus neque. In elementum justo at eleifend eleifend.
-  	</p>
-  	<p>
-  	Vestibulum malesuada, ex non scelerisque imperdiet, ipsum risus placerat nunc, eget sodales ligula diam eget nisl. Vivamus sapien lacus, consequat eget quam tincidunt, malesuada vulputate turpis. Pellentesque scelerisque dolor vel consequat vehicula. Donec iaculis faucibus dictum. Proin a magna in ante fringilla placerat. Praesent sed ullamcorper lorem, vitae congue nibh. Morbi cursus nunc vel pulvinar fringilla. Morbi et tellus quis justo iaculis aliquam vel et orci. Proin aliquet vitae justo ut blandit. Maecenas placerat rhoncus lacinia. Sed sit amet ipsum id mauris auctor facilisis. Curabitur quis sodales elit, in facilisis libero.
-  	</p>
-  	<p>
-  	Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Duis cursus, quam tristique fringilla congue, est odio commodo leo, eu facilisis ipsum nibh sit amet ante. Integer nec suscipit mauris. Nam at malesuada purus, at ullamcorper tortor. Phasellus iaculis ut lorem a finibus. Aenean cursus dui vitae tortor dignissim scelerisque. Pellentesque malesuada pulvinar quam ac sodales. Etiam pretium varius pharetra. Interdum et malesuada fames ac ante ipsum primis in faucibus. Praesent ornare faucibus elit, non euismod lorem sagittis a. Praesent luctus mi ut lobortis feugiat. Duis non convallis nunc, venenatis laoreet ligula. Morbi in convallis orci, ut finibus leo. Phasellus viverra mi nec nisl sollicitudin, quis tristique leo egestas.
-  	</p>
-  	<p>
-  	Morbi orci ligula, ornare mattis magna et, efficitur sollicitudin nibh. Etiam et arcu a justo porttitor molestie. Maecenas euismod lacus ut egestas aliquam. Mauris consectetur, ante non tincidunt tincidunt, neque mauris pretium est, sed faucibus velit mi sit amet leo. Donec id nibh iaculis, imperdiet neque quis, placerat mauris. Morbi luctus, ex sit amet rhoncus consectetur, nibh mi feugiat augue, vel euismod erat lectus a magna. Mauris nibh eros, sollicitudin sed tempor hendrerit, ornare sit amet felis. Etiam odio neque, aliquet eu laoreet a, hendrerit id erat. Praesent mollis eros justo, a molestie tellus pretium id. Mauris magna magna, tempus sit amet tellus consequat, eleifend aliquam sem. Integer eleifend risus ut enim tincidunt consequat. Nunc vulputate tellus non massa tempus sagittis. Nulla iaculis ultrices eros vitae aliquam.
-  	</p>
-  	<p>
-  	Maecenas interdum, eros ut euismod aliquam, erat tortor eleifend elit, nec fringilla velit ante vitae nisl. Nunc erat risus, maximus quis posuere vitae, varius sodales velit. Praesent facilisis sem maximus libero ultrices vulputate. Praesent nec magna ut augue imperdiet euismod in blandit mi. Morbi varius risus eget tellus posuere congue. Aenean dapibus eget turpis sed lobortis. Maecenas urna dolor, consequat sit amet rhoncus ut, tincidunt ac tellus. Ut nec erat elementum, auctor dui in, sodales massa.
-  	</p>
-  	<p>
-  	Vestibulum facilisis faucibus velit eget rutrum. Pellentesque ut dui sit amet nisi ullamcorper hendrerit. Duis pharetra tortor non dui convallis auctor. Curabitur accumsan magna eget dolor sodales commodo. Aenean massa erat, viverra a lorem bibendum, pellentesque rutrum arcu. Pellentesque ornare finibus purus, non feugiat erat vulputate ac. Donec tincidunt pharetra augue at convallis. Integer fringilla purus in mauris scelerisque iaculis. Praesent felis diam, placerat in tempor in, luctus quis turpis.
-  	</p>
+    <iframe class="iframeContents" name="contents" src="pages/lorem.html" onload="autoResize(this)" width="100%" scrolling="no" frameborder="0"></iframe>
   </div>
-
-  $('.jumbotron').css('background[]')
 
 </body>
 </html>

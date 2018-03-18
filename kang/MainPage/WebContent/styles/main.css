@@ -18,13 +18,16 @@ body {
 /* jumbotron */
 .jumbotron {
   margin: auto;
+  padding-left: 20px;
+  background-color: #FFFFFF;
   background-image: url("../images/jumbotron_coding.png");
   background-size: cover;
   background-repeat: no-repeat;
+  opacity: 0.8;
 }
 
 /* text-center */
-.cen {
+.text-center {
 	text-align: center;
 }
 
