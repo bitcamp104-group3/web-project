@@ -15,6 +15,12 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <!-- Bootstrap JavaScript 파일 -->
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+  <style type="text/css">
+    .page {
+      display: none;
+    }
+  </style>
 </head>
 <body>
 <div class="container">
@@ -35,7 +41,7 @@
       </div>
       <div class="collapse navbar-collapse" id="myNavbar">
         <ul class="nav navbar-nav">
-          <li class="active"><a href="index.html">홈</a></li>
+          <li class="active"><a href="#" onclick="setCurrentPage('pageIndex');">홈</a></li>
           <li class="dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown" href="#">WEB <span class="caret"></span></a>
             <ul class="dropdown-menu">
@@ -44,7 +50,7 @@
               <li><a href="GIFfile.html">GIFfile</a></li>
             </ul>
           </li>
-          <li><a href="test1.html">자기소개</a></li>
+          <li><a href="#" onclick="setCurrentPage('pageHello');">자기소개</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
           <li><a href="about.html">About</a></li>
@@ -53,9 +59,28 @@
     </div>
   </nav>
 
-  <div class="container">
+  <div id="pageIndex" class="container page">
     <object id="lorem" width="100%" height="2100px" data="pages/lorem.html"></object>
   </div>
+  <div id="pageHello" class="container page">
+    Helo, world
+  </div>
 </div>
+<script>
+  var pages = ['pageIndex', 'pageHello'];
+  var currentPage = null;
+
+  function setCurrentPage(newPage) {
+    if (currentPage === newPage)
+      return;
+    if (currentPage)
+      $('#' + currentPage).css('display', 'none');
+    if (newPage)
+      $('#' + newPage).css('display', 'block');
+    currentPage = newPage;
+  }
+
+  setCurrentPage(pages[0]);
+</script>
 </body>
 </html>
