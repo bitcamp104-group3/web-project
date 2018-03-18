@@ -33,9 +33,9 @@
         $.each(characterArr, function(key, value) {
           var characterUrl = 'url(' + value + ')';
           if(key === characterId) {
-            $('.jumbotron').css('background-image', characterUrl);
-            $('.jumbotron').css('background-size', '200px 200px');
-            $('.jumbotron').css('background-position', 'right');
+            $('.jumbotron-imgs').css('background-image', characterUrl);
+            $('.jumbotron-imgs').css('background-size', '200px 200px');
+            $('.jumbotron-imgs').css('background-position', 'right');
           };
         });
       });
@@ -53,13 +53,17 @@
 <body data-spy="scroll" data-target=".navbar" data-offset="50">
 
   <!-- 상위 스크린 -->
-  <div class="jumbotron">
-    <button class="character" id="jumboPatrick">PATRICK</button>
-    <button class="character" id="jumboRyan">RYAN</button>
-    <button class="character" id="jumboApeach">APEACH</button>
-    <button class="character" id="jumboNeo">NEO</button>
-    <h1>{ Bitcamp Group 3 }</h1>
-    <p>Make it work! Make it right! Make it fast!</p>
+  <div class="jumbotron jumbotron-imgs">
+    <div class="btn-group">
+      <button type="button" class="btn btn-default btn-xs character" id="jumboPatrick">PATRICK</button>
+      <button type="button" class="btn btn-default btn-xs character" id="jumboRyan">RYAN</button>
+      <button type="button" class="btn btn-default btn-xs character" id="jumboApeach">APEACH</button>
+      <button type="button" class="btn btn-default btn-xs character" id="jumboNeo">NEO</button>
+    </div>
+    <div class="well well-sm well-text">
+      <h1>{ Bitcamp Group 3 }</h1>
+      <p>Make it work! Make it right! Make it fast!</p>
+    </div>
   </div>
 
   <!-- 메뉴 바  -->

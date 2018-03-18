@@ -16,14 +16,23 @@ body {
 }
 
 /* jumbotron */
-.jumbotron {
+.jumbotron-imgs {
   margin: auto;
-  padding-left: 20px;
-  background-color: #FFFFFF;
+  background-color: transparent;
   background-image: url("../images/jumbotron_coding.png");
   background-size: cover;
   background-repeat: no-repeat;
-  opacity: 0.8;
+}
+
+/* well-text */
+.well-text {
+  width: 70%;
+  margin: auto;
+  padding-left: 20px;
+  padding-right: 20px;
+  color: #000000;
+  background-color: rgba(255, 255, 255, 0.5);
+  border-style: none;
 }
 
 /* text-center */
