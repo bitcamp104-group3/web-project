@@ -20,21 +20,59 @@
   <script type="text/javascript">
 
     $(function() {
-      // 캐릭터 이미지 파일 주소 배열
-      var characterArr = {
-        jumboSpring: "images/spring.jpg",
+      //계절 이미지 파일 배열
+      var seasonArr = {
+        jumboSpring: 
+          {
+              image: 'url("images/spring.jpg")',
+              menuColor: '#D25386',
+              hoverColor: '#FF0080'
+          },
         jumboSummer: "images/summer.jpg",
         jumboFall: "images/fall.jpg",
         jumboWinter: "images/winter.jpg"
       };
-      //캐릭터 이미지 변경 버튼 클릭 시
-      $('button.character').click(function() {
-        var characterId = $(this).attr('id');
-        $.each(characterArr, function(key, value) {
-          var characterUrl = 'url(' + value + ')';
-          if(key === characterId) {
-            $('.jumbotron-imgs').css('background-image', characterUrl);
-          };
+      //계절 버튼 클릭 시
+      $('button.season').click(function() {
+        var seasonId = $(this).attr('id');
+        $.each(seasonArr, function(key, value) {
+          // var seasonUrl = 'url(' + value + ')';
+          if(key === seasonId) {
+            //상위 스크린 배경화면 css설정
+            $('.jumbotron-imgs').css({ 'background-image': value.image });
+            //메뉴바 배경, 보더 색 css설정
+            $('.navbar-default').css({
+                'background-color': value.menuColor,
+                'border-color': value.menuColor
+            });
+            //메뉴바의 메인 제목 마우스 호버 css설정
+            $('.navbar-brand').hover(function() {
+                $(this).css({'color': value.hoverColor});
+            }, function() {
+                $(this).css({'color': ''});
+            });
+            //링크 마우스 호버 css설정 
+            $('.navbar-nav > li > a').hover(function() {
+                $(this).css({'color': value.hoverColor});
+            }, function() {
+                $(this).css({'color': ''});
+            });  
+            //링크 활성화되었을 때, 마우스 호버 css설정 
+            $('.navbar-nav > .active > a').hover(function() {
+                $(this).css({'color': value.hoverColor});
+            }, function() {
+                $(this).css({'color': ''});
+            });  
+              
+              
+/*              
+            $('.navbar-brand:hover, .navbar-brand:focus').css(
+                {
+                   'color': value.hoverColor
+                });*/
+              
+              
+          }; //end if
         });
       });
 
@@ -51,12 +89,12 @@
 <body data-spy="scroll" data-target=".navbar" data-offset="50">
 
   <!-- 상위 스크린 -->
-  <div class="jumbotron jumbotron-imgs">
+  <div class="container jumbotron jumbotron-imgs">
     <div class="btn-group">
-      <button type="button" class="btn btn-default btn-xs character" id="jumboSpring">SPRING</button>
-      <button type="button" class="btn btn-default btn-xs character" id="jumboSummer">SUMMER</button>
-      <button type="button" class="btn btn-default btn-xs character" id="jumboFall">FALL</button>
-      <button type="button" class="btn btn-default btn-xs character" id="jumboWinter">WINTER</button>
+      <button type="button" class="btn btn-default btn-xs season" id="jumboSpring">SPRING</button>
+      <button type="button" class="btn btn-default btn-xs season" id="jumboSummer">SUMMER</button>
+      <button type="button" class="btn btn-default btn-xs season" id="jumboFall">FALL</button>
+      <button type="button" class="btn btn-default btn-xs season" id="jumboWinter">WINTER</button>
     </div>
     <div class="well well-sm well-text">
       <h1>{ Bitcamp Group 3 }</h1>
@@ -65,7 +103,7 @@
   </div>
 
   <!-- 메뉴 바  -->
-  <nav class="navbar navbar-inverse navbar-default" data-spy="affix" data-offset-top="197">
+  <nav class="container navbar navbar-inverse navbar-default" data-spy="affix" data-offset-top="197">
     <div class="container-fluid">
       <div class="navbar-header">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">

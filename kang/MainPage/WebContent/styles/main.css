@@ -42,32 +42,39 @@ body {
 }
 
 /* navbar */
-.navbar-default {
-    background-color: #F28DA5;
-    border-color: #F28DA5;
+    /* 메뉴바 배경, 보더 색 */ 
+.navbar-default { /* (variable) */
+    background-color: #000000;
+    border-color: #000000;
 }
 /* Title */
+    /* 메뉴바의 메인 제목 */
 .navbar-default .navbar-brand { /* (fixed) */
     color: #FFFFFF;
 }
-.navbar-default .navbar-brand:hover,
+    /* 메뉴바의 메인 제목 마우스 호버 */
+.navbar-default .navbar-brand:hover, /* (variable) */
 .navbar-default .navbar-brand:focus {
     color: #5E5E5E;
 }
 /* Link */
+    /* 링크 기본 */
 .navbar-default .navbar-nav > li > a { /* (fixed) */
     color: #FFFFFF;
 }
-.navbar-default .navbar-nav > li > a:hover,
+    /* 링크 마우스 호버*/
+.navbar-default .navbar-nav > li > a:hover, /* (variable) */
 .navbar-default .navbar-nav > li > a:focus {
     color: #5E5E5E;
 }
-.navbar-default .navbar-nav > .active > a,
+    /* 링크 활성화되었을 때, 마우스 호버 */
+.navbar-default .navbar-nav > .active > a, /* (variable) */
 .navbar-default .navbar-nav > .active > a:hover,
 .navbar-default .navbar-nav > .active > a:focus {
     color: #5E5E5E;
     background-color: #E7E7E7;
 }
+    /* 메뉴 클릭했을 때, 폰트, 배경색 */
 .navbar-default .navbar-nav > .open > a, /* (fixed) */
 .navbar-default .navbar-nav > .open > a:hover,
 .navbar-default .navbar-nav > .open > a:focus {
@@ -75,22 +82,26 @@ body {
     background-color: #FFFFFF;
 }
 /* Caret */
+    /* 드롭다운메뉴의 화살표 기본 색 */
 .navbar-default .navbar-nav > .dropdown > a .caret { /* (fixed) */
     border-top-color: #FFFFFF;
     border-bottom-color: #FFFFFF;
 }
-.navbar-default .navbar-nav > .dropdown > a:hover .caret,
+    /* 드롭다운메뉴의 화살표 마우스 호버 색 */
+.navbar-default .navbar-nav > .dropdown > a:hover .caret, /* (fixed) */
 .navbar-default .navbar-nav > .dropdown > a:focus .caret {
     border-top-color: #333;
     border-bottom-color: #333;
 }
-.navbar-default .navbar-nav > .open > a .caret,
+    /* 드롭다운메뉴의 화살표 클릭시 변경되는 색 */
+.navbar-default .navbar-nav > .open > a .caret, /* (fixed) */
 .navbar-default .navbar-nav > .open > a:hover .caret,
 .navbar-default .navbar-nav > .open > a:focus .caret {
     border-top-color: #555;
     border-bottom-color: #555;
 }
 /* Mobile version */
+    /* 모바일 반응형 메뉴 */
 .navbar-default .navbar-toggle { /* (fixed) */
     border-color: #DDD;
 }
@@ -106,7 +117,7 @@ body {
         color: #FFFFFF;
     }
     .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover,
-    .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
+    .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus { /* (fixed) */
           color: #5E5E5E;
     }
 }
