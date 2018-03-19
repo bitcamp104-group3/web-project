@@ -22,10 +22,10 @@
     $(function() {
       // 캐릭터 이미지 파일 주소 배열
       var characterArr = {
-        jumboPatrick: "images/patrick.png",
-        jumboRyan: "images/ryan.png",
-        jumboApeach: "images/apeach.png",
-        jumboNeo: "images/neo.png"
+        jumboSpring: "images/spring.jpg",
+        jumboSummer: "images/summer.jpg",
+        jumboFall: "images/fall.jpg",
+        jumboWinter: "images/winter.jpg"
       };
       //캐릭터 이미지 변경 버튼 클릭 시
       $('button.character').click(function() {
@@ -34,8 +34,6 @@
           var characterUrl = 'url(' + value + ')';
           if(key === characterId) {
             $('.jumbotron-imgs').css('background-image', characterUrl);
-            $('.jumbotron-imgs').css('background-size', '200px 200px');
-            $('.jumbotron-imgs').css('background-position', 'right');
           };
         });
       });
@@ -45,7 +43,7 @@
     // iframe 자동 사이즈 조절
     function autoResize(i) {
         var iframeHeight = i.contentWindow.document.body.scrollHeight;
-        i.height = iframeHeight + 200;
+        i.height = iframeHeight + 400;
     };
 
   </script>
@@ -55,10 +53,10 @@
   <!-- 상위 스크린 -->
   <div class="jumbotron jumbotron-imgs">
     <div class="btn-group">
-      <button type="button" class="btn btn-default btn-xs character" id="jumboPatrick">PATRICK</button>
-      <button type="button" class="btn btn-default btn-xs character" id="jumboRyan">RYAN</button>
-      <button type="button" class="btn btn-default btn-xs character" id="jumboApeach">APEACH</button>
-      <button type="button" class="btn btn-default btn-xs character" id="jumboNeo">NEO</button>
+      <button type="button" class="btn btn-default btn-xs character" id="jumboSpring">SPRING</button>
+      <button type="button" class="btn btn-default btn-xs character" id="jumboSummer">SUMMER</button>
+      <button type="button" class="btn btn-default btn-xs character" id="jumboFall">FALL</button>
+      <button type="button" class="btn btn-default btn-xs character" id="jumboWinter">WINTER</button>
     </div>
     <div class="well well-sm well-text">
       <h1>{ Bitcamp Group 3 }</h1>
