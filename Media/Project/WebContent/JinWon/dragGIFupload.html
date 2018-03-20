@@ -3,8 +3,10 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Insert title here</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	<!--  안녕하세요-->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	
 	<style>
 	.stylediv {
 	    float: left;
@@ -221,14 +223,26 @@
 	
 	<div class="stylediv" id="screendiv" ondrop="drop(event)" ondragend="playVideo(event)" ondragleave="stopVid(event)" ondragover="allowDrop(event)" >
 	</div>
-		<input type="button" id="btn" value="스크린샷">
+		<div class="container">
+		  <div class="btn-group-vertical">
+		    <button type="button" id="btn" class="btn btn-primary">스크린샷</button>
+		    <button type="button" id="btnmove" class="btn btn-primary">움짤만들기</button>
+		    <select id="speed">
+				<option value="50">초고속</option>
+				<option value="200" selected="selected">고속</option>
+				<option value="800">저속</option>
+				<option value="2000">거북이</option>
+			</select>
+		  </div>
+		</div>
+		<!-- <input type="button" id="btn" value="스크린샷">
 		<input type="button" id="btnmove" value="움짤만들기">
 		<select id="speed">
 			<option value="50">초고속</option>
 			<option value="200" selected="selected">고속</option>
 			<option value="800">저속</option>
 			<option value="2000">거북이</option>
-		</select>
+		</select> -->
 		
 	<div id="movediv" style="float:right;">
 		<canvas id="canmove"></canvas>
