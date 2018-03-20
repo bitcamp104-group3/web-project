@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<script type="text/javascript">
+		var data = {//제이슨 데이터
+						"image":[
+								"images/민식 앞.JPG",
+								"images/나영 앞.jpg",
+								"images/진원 앞.jpg",
+								"images/윤근 앞.jpg",
+								"images/재욱 앞.jpg",
+								"images/성훈 앞.jpg",
+								"images/보경 앞.jpg",
+								"images/민식 뒤.JPG",
+								"images/나영 뒤.jpg",
+								"images/진원 뒤.jpg",
+							    "images/윤근 뒤.jpg",
+							    "images/재욱 뒤.jpg",
+							    "images/성훈 뒤.jpg",
+							    "images/보경 뒤.jpg",
+								],
+						"audio":[
+							 	"audio/horse.ogg",
+							 	"audio/horse1.ogg",
+							 	"audio/horse2.ogg",
+							 	"audio/horse3.ogg"
+						 		]
+		
+				 	}
+		$(function () { //div에 아이디 값에다가 이미지 주소와 오디오 주소를 넣어준다
+			for(var index = 0; index<7; index++){
+				//console.log($('#div'+index));
+				$('#div'+index).append('<input type = "image" id="image' + index + '" style="float: left; margin : 8px;" height = "200px" width = "200px"  onmouseover="start('+ index +')" onmouseout="stop('+ index +')" >');
+				$('#div'+index).append('<audio id="audio'+index+'" src=""></audio>');
+				$('#image'+index).attr("src",data.image[index]);
+			}
+			for(index in data.audio){
+				$('#audio'+index).attr("src",data.audio[index]);
+			}
+			
+		});
+		var audio;
+		
+	 	function start(number) { //마우스 오버 이벤트 
+			var img = document.getElementById("image"+number);
+			img.setAttribute('src',data.image[(number+7)]);
+			audio = document.getElementById("audio"+number);
+			audio.setAttribute("src", data.audio[number]);
+			audio.play();
+
+		}
+
+		function stop(number) { //마우스 아웃 이벤트
+			var img = document.getElementById("image"+number);
+			img.setAttribute('src',data.image[number]);
+			audio.pause();
+		} 
+
+	</script>
+</head>
+<body>
+	<div  style="margin-left: 32%; margin-top: 10%;">
+	<div id="div0"></div>
+	<div id="div1"></div>
+	<div id="div2"></div>
+	</div>
+	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+	<div style="margin-left: 26%">
+	<div id="div3" ></div>
+	<div id="div4"></div>
+	<div id="div5"></div>
+	<div id="div6"></div>
+	<div id="div7"></div>
+	</div>
+</body>
+</html>
