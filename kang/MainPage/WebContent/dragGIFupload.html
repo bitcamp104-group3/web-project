@@ -9,6 +9,11 @@
 	
 	<!--  안녕하세요-->
 	<style>
+	
+	.margin{
+		margin-left: 350px;
+		margin-right: 350px;
+	}
 	.stylediv {
 	    float: left;
 	    width: 300px;
@@ -222,42 +227,42 @@
 </script>
 </head>
 <body>
-
-<input type= "text" id = "vidurl" value= "http://tomtom2k5.free.fr/mkv/720p/star.wars.episode.ii.attack.of.the.clones.2002.720p.hdtv.x264.internal.sample-hv.mkv">
-<input type = "button" id ="addurl" class="btn btn-primary" value="URL영상 추가">
-
-<form id = frm>
-	<div>
-		<h2> 이미지 업로드 </h2>
-		<input type ="file" id ="input_img" draggable="true">
-		
-	</div>
-
-	<div id = "list" class="well">
-		
-	</div>
+<div class="margin">
+	<input type= "text" id = "vidurl" value= "http://tomtom2k5.free.fr/mkv/720p/star.wars.episode.ii.attack.of.the.clones.2002.720p.hdtv.x264.internal.sample-hv.mkv">
+	<input type = "button" id ="addurl" class="btn btn-primary" value="URL영상 추가">
 	
-	<div class="stylediv well" id="screendiv" ondrop="drop(event)" ondragend="playVideo(event)" ondragleave="stopVid(event)" ondragover="allowDrop(event)" >
-	</div>
+	<form id = "frm">
+		<div>
+			<h2> 이미지 업로드 </h2>
+			<input type ="file" id ="input_img" draggable="true">
+			
+		</div>
 	
-	<div class="btn-group-vertical">
-		<button type="button" id="btn" class="btn btn-primary"><span class="glyphicon glyphicon-camera"></span>&nbsp;&nbsp;스크린샷&nbsp;&nbsp;</button>
-		<button type="button" id="btnmove" class="btn btn-primary"><span class="glyphicon glyphicon-facetime-video"></span> 움짤플레이</button>
-		<select id="speed" class="form-control">
-			<option value="50">초고속</option>
-			<option value="200" selected="selected">고속</option>
-			<option value="800">저속</option>
-			<option value="2000">거북이</option>
-		</select>
-	</div>
+		<div id = "list" class="well">
+			
+		</div>
 		
-	<div id="movediv" style="float:right;">
-		<canvas id="canmove"></canvas>
-	</div>
-	<hr style="clear: both;">
-	<p>캡처 된 사진 <button type="button" id="btnremove" class="btn btn=parimary"><span class="glyphicon glyphicon-trash"></span>전체지우기</button></p>
-	<div id="parentdiv"></div>
-</form>
-
+		<div class="stylediv well" id="screendiv" ondrop="drop(event)" ondragend="playVideo(event)" ondragleave="stopVid(event)" ondragover="allowDrop(event)" >
+		</div>
+		
+		<div class="btn-group-vertical">
+			<button type="button" id="btn" class="btn btn-primary"><span class="glyphicon glyphicon-camera"></span>&nbsp;&nbsp;스크린샷&nbsp;&nbsp;</button>
+			<button type="button" id="btnmove" class="btn btn-primary"><span class="glyphicon glyphicon-facetime-video"></span> 움짤플레이</button>
+			<select id="speed" class="form-control">
+				<option value="50">초고속</option>
+				<option value="200" selected="selected">고속</option>
+				<option value="800">저속</option>
+				<option value="2000">거북이</option>
+			</select>
+		</div>
+		
+		<div id="movediv" style="float:right;">
+			<canvas id="canmove"></canvas>
+		</div>
+		<hr style="clear: both;">
+		<p>캡처 된 사진 <button type="button" id="btnremove" class="btn btn=parimary"><span class="glyphicon glyphicon-trash"></span>전체지우기</button></p>
+		<div id="parentdiv"></div>
+	</form>
+</div>
 </body>
 </html>
