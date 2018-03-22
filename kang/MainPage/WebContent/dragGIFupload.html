@@ -124,7 +124,7 @@
 			}
 		}
 		
-		document.getElementById("btnremove").onclick = function(){
+		document.getElementById("btnremove").onclick = function(){ //전체삭제
 			$("#parentdiv > ").remove("div");  // parentdiv 자식 div들을 다 지운다
 		}
 	}
@@ -229,7 +229,7 @@
 <form id = frm>
 	<div>
 		<h2> 이미지 업로드 </h2>
-		<input type ="file" id ="input_img" />
+		<input type ="file" id ="input_img" draggable="true">
 		
 	</div>
 
