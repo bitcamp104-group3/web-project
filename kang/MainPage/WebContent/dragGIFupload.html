@@ -2,8 +2,11 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>Insert title here</title>
+	<title>움짤만들기</title>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	
 	<!--  안녕하세요-->
 	<style>
 	.stylediv {
@@ -13,6 +16,11 @@
 	    margin: 10px;
 	    padding: 10px;
 	    border: 1px solid black;
+	}
+	
+	#size{
+		margin-left: 10px;
+		width: 290px;
 	}
 	
 	#list{
@@ -38,7 +46,7 @@
 	}
 	</style>
 	
-	<script>
+	<script type="text/javascript">
 	
 /* 스크린샷 움짤 */
 	window.onload = function() {
@@ -52,19 +60,26 @@
 		   	var vid = document.getElementById($("#screendiv > video").attr('id')); //vid 가져오기
 		   	canvars.getContext("2d").drawImage(vid, 10,10,295,160); //스크린샷~~
 		   	
-		   	var btn = document.createElement("input"); //input 생성
-		   	btn.setAttribute("type", "button"); //type은 버튼
-		   	btn.setAttribute("value", "삭제"); //value 값 삭제
-		   	btn.setAttribute("onclick", "del("+i+")"); //type은 버튼
+		   	var btn = document.createElement("button"); //input 생성
 		   	
+		   	btn.setAttribute("type", "button"); //type은 버튼
+		   	btn.setAttribute("onclick", "del("+i+")"); //type은 버튼
+		   	btn.setAttribute("id", "size");
+		   	btn.setAttribute("class", "btn btn-primary"); //클래스 css설정
+		   	
+		   	var span = document.createElement("span"); //span 생성
+		   	span.setAttribute("class", "glyphicon glyphicon-trash"); //span속성
 		   	
 		   	var childdiv = document.createElement("div"); //div 생성 (childdiv)
 		   	childdiv.setAttribute("id", "childdiv"+i); //id = childdiv+i
 		   	childdiv.setAttribute("style", "float: left;"); //float로 띄우기
+		   	childdiv.setAttribute("class", "btn-group-vertical"); //부트스트렙
 		   	
 		   	i++; //생성 될 때마다 id번호 ++
 		   	
 		   	var parentdiv = document.getElementById("parentdiv"); //parentdiv 가져오기
+		   	
+		   	btn.appendChild(span); //버튼의 자식 
 		   	
 		   	childdiv.appendChild(canvars); //childdiv의 자식 캔퍼스 생성
 		   	childdiv.appendChild(btn); //캔퍼스와 형제 버튼 생성
@@ -98,7 +113,7 @@
 			if(canarr.length == 0){ //스크린샷 찍은 것이 없다면
 				alert("스크린샷이 없습니다.");
 			}else{
-				myVar = setInterval(function() { //0.2초 마다 실행
+				myVar = setInterval(function() { //사진 바뀌는 곳
 					var canvas = document.getElementById("canmove"); //캔버스
 					canvas.getContext("2d").drawImage(canarr[number], 10, 10); //캔버스에 이미지를 그리다
 					number++;
@@ -107,6 +122,10 @@
 					}
 				}, $("#speed > option:selected").val());
 			}
+		}
+		
+		document.getElementById("btnremove").onclick = function(){ //전체삭제
+			$("#parentdiv > ").remove("div");  // parentdiv 자식 div들을 다 지운다
 		}
 	}
 	
@@ -205,35 +224,38 @@
 <body>
 
 <input type= "text" id = "vidurl" value= "http://tomtom2k5.free.fr/mkv/720p/star.wars.episode.ii.attack.of.the.clones.2002.720p.hdtv.x264.internal.sample-hv.mkv">
-<input type = "button" id ="addurl" value="URL영상 추가">
+<input type = "button" id ="addurl" class="btn btn-primary" value="URL영상 추가">
 
 <form id = frm>
 	<div>
 		<h2> 이미지 업로드 </h2>
-		<input type ="file" id ="input_img" />
+		<input type ="file" id ="input_img" draggable="true">
 		
 	</div>
 
-	<div id = "list">
+	<div id = "list" class="well">
 		
 	</div>
 	
-	<div class="stylediv" id="screendiv" ondrop="drop(event)" ondragend="playVideo(event)" ondragleave="stopVid(event)" ondragover="allowDrop(event)" >
+	<div class="stylediv well" id="screendiv" ondrop="drop(event)" ondragend="playVideo(event)" ondragleave="stopVid(event)" ondragover="allowDrop(event)" >
 	</div>
-		<input type="button" id="btn" value="스크린샷">
-		<input type="button" id="btnmove" value="움짤만들기">
-		<select id="speed">
+	
+	<div class="btn-group-vertical">
+		<button type="button" id="btn" class="btn btn-primary"><span class="glyphicon glyphicon-camera"></span>&nbsp;&nbsp;스크린샷&nbsp;&nbsp;</button>
+		<button type="button" id="btnmove" class="btn btn-primary"><span class="glyphicon glyphicon-facetime-video"></span> 움짤플레이</button>
+		<select id="speed" class="form-control">
 			<option value="50">초고속</option>
 			<option value="200" selected="selected">고속</option>
 			<option value="800">저속</option>
 			<option value="2000">거북이</option>
 		</select>
+	</div>
 		
 	<div id="movediv" style="float:right;">
 		<canvas id="canmove"></canvas>
 	</div>
 	<hr style="clear: both;">
-	<p>당신이 고른 사진</p>
+	<p>캡처 된 사진 <button type="button" id="btnremove" class="btn btn=parimary"><span class="glyphicon glyphicon-trash"></span>전체지우기</button></p>
 	<div id="parentdiv"></div>
 </form>
 
