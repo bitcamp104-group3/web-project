@@ -41,6 +41,17 @@ body {
 	text-align: center;
 }
 
+/* footer */
+.footer {
+   position: fixed;
+   left: 0;
+   right: 0;
+   bottom: 0;
+   background-color: #000000;
+   color: #FFFFFF;
+   text-align: center;
+}
+
 /* navbar */
     /* 메뉴바 배경, 보더 색 */ 
 .navbar-default { /* (variable) */
