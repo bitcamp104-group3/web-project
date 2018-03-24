@@ -83,15 +83,154 @@
           }; //end if
         }); //end each
       }); //end click
+        
+        //iframe 자동 사이즈 조절
+        //코드출처 >> https://blog.naver.com/justerkr/220106272136
+        /*var lastHeight = 0;
+        var curHeight = 0;
+        var targetFrame = $('#content');*/
 
+        /*$('#content').on('load', function() { 
+            curHeight = targetFrame.contents().find('body').height();
+            targetFrame.css('height', curHeight + 'px' );
+        });*/
+        
+        /*$('#content').on('load', function() { 
+            curHeight = targetFrame.contents().find('.mainContents').height();
+            targetFrame.css('height', curHeight + 'px' );
+        });*/
+
+        /*setInterval(function(){
+            curHeight = targetFrame.contents().find('body').height();
+            if ( curHeight != lastHeight ) {
+              targetFrame.css('height', (lastHeight = curHeight) + 'px' );
+            }
+        },500);*/
+        
+        /*setInterval(function(){
+            curHeight = targetFrame.contents().find('.mainContents').height();
+            if ( curHeight != lastHeight ) {
+              targetFrame.css('height', (lastHeight = curHeight) + 'px' );
+            }
+        },500);*/
+        
+        /*setInterval(function() {
+
+          var h = window.innerHeight;
+          var iframe = document.getElementsByTagName("iframe")[0];
+          iframe.style.height = h + "px";
+        
+        }, 100);*/
+        
     }); //end
 
     // iframe 자동 사이즈 조절
     // 해당 html파일의 사이즈를 받아 조절
-    function autoResize(i) {
+//    function autoResize(i) {
+//        var iframeHeight = i.contentWindow.document.body.scrollHeight;
+//        i.height = iframeHeight + 400;
+//    };
+    
+//    $(function() {
+        
+    /*setInterval(function () {
+        var i = document.getElementsByTagName("iframe")[0];
         var iframeHeight = i.contentWindow.document.body.scrollHeight;
-        i.height = iframeHeight + 400;
-    };
+        i.height = iframeHeight + 20;
+    }, 100);*/
+        /*
+    setInterval(function () {
+        var i = document.getElementsByTagName("iframe")[0];
+        //TODO1 : iframe 부모 페이지에 접근해서 클릭되는 이벤트 시 height 조절
+        //TODO2 : <object> 사용해서 크기 조절 -> display: block 사용
+        //TODO3 : 결론은 해결해보자
+        var iframeHeight = i.contentWindow.document.body.scrollHeight;
+        i.height = iframeHeight + 20;
+    }, 100);
+    
+    });
+      */
+      
+      // 부모html에서 자식iframe 접근, 제어  // jQuery
+
+    
+      ///////
+    /*
+    $(function() {
+        var iframe = $('iframe').get(0).contentWindow;
+        console.log(iframe);
+        var iframeHeight = $('iframe').get(0).contentWindow.document.body.scrollHeight;
+        console.log(iframeHeight);
+        var contentsHeight = $('#contents').get(0).contentWindow.document;
+        console.log(contentsHeight);
+        
+        var contentsBtn = $('#contents').contents().find('#btn');
+        
+        $(contentsBtn).click(function() {
+            alert("안녕");
+        });
+        console.log(contentsBtn.val());
+    });*/
+      /*
+    $(document).ready(function() {
+    
+    var lastHeight = 0;
+    var curHeight = 0;
+    var targetFrame = $('#contents'); // custome id 입력
+    
+    $( "#contents" ).on('load', function() { 
+        curHeight = targetFrame.contents().find('body').scrollHeight;
+        targetFrame.css('height', curHeight + 'px' );
+    });
+    
+    setInterval(function(){
+        curHeight = targetFrame.contents().find('body').scrollHeight;
+        if ( curHeight != lastHeight ) {
+          targetFrame.css('height', (lastHeight = curHeight) + 'px' );
+        }
+      },500);
+    
+});
+     */
+      
+      $(function() {
+          
+        var lastHeight = 0;
+        var curHeight = 0;
+        var i = document.getElementById('contents');
+      
+        /*$('#contents').on('load', function() {
+            curHeight = i.contentWindow.document.body.scrollHeight;
+            i.height = curHeight + 200;
+        });*/
+      
+        setInterval(function () {
+        curHeight = i.contentWindow.document.body.scrollHeight;
+        console.log("현재높이: " + curHeight);
+        if(curHeight != lastHeight) {
+            i.height = (lastHeight = curHeight) + 200;
+        }
+        console.log("메인창높이: " + i.height);
+        console.log("최근높이: " + lastHeight);
+        
+    }, 1000); 
+          
+      });
+        
+      
+      
+      
+      
+      
+      
+      
+    /*function resizeHeight(fr) {
+     var frbody = fr.contentWindow.document.body;
+     fr.style.height = frbody.scrollHeight + (frbody.offsetHeight – frbody.clientHeight);
+    };*/
+    
+      
+    
 
   </script>
 </head>
@@ -147,7 +286,7 @@
 <!-- 본문 내용 -->
   <div class="container">
     <!-- iframe 설정 (외부페이지 링크) -->
-    <iframe class="iframeContents" name="contents" src="pages/lorem.html" onload="autoResize(this)" width="100%" scrolling="no" frameborder="0"></iframe>
+    <iframe class="iframeContents" id="contents" name="contents" src="pages/lorem.html" width="100%" scrolling="no" frameborder="0"></iframe>
   </div>
 
 </body>
