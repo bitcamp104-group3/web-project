@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>PAPAGO</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  	<script type="text/javascript">
+  		$(function() {
+  			$('#submit').click(function() {
+  				$.ajax({
+  					url: "papagoJSP.jsp",
+  					type: "POST",
+  					dataType: "text",
+  					data: {"inputText": $('#inputText').val()},
+  					error: function() {
+  						alert("통신실패!");
+  					},
+  					success: function(data) {
+  						console.log(data);
+  						$('#translatedResult').html(data);
+  					}
+  				}); //end - ajax
+  			}); //end - click '#submit'
+  		}) //end - jquery
+  	</script>
+</head>
+<body>
+	<h2>한/영 번역 - 네이버 파파고 API</h2>
+	<input type="text" id="inputText" name="inputText">
+	<button id="submit" name="submit">입력</button>
+    <hr>
+    <p id="translatedResult"></p>
+</body>
+</html>
