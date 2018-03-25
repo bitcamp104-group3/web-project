@@ -18,6 +18,49 @@
   			font-weight: bold;
   			font-size: 17px;
   		}
+        /* 말풍선 reference: http://www.ilikepixels.co.uk/drop/bubbler/ */
+        .bubble 
+        {
+            position: relative;
+            width: 400px;
+            height: 220px;
+            padding: 0px;
+            background: #FFF6FF;
+            -webkit-border-radius: 10px;
+            -moz-border-radius: 10px;
+            border-radius: 10px;
+            border: #F28DA5 solid 4px;
+        }
+
+        .bubble:after 
+        {
+            content: '';
+            position: absolute;
+            border-style: solid;
+            border-width: 20px 0 20px 15px;
+            border-color: transparent #FFF6FF;
+            display: block;
+            width: 0;
+            z-index: 1;
+            margin-top: -20px;
+            right: -15px;
+            top: 50%;
+        }
+
+        .bubble:before 
+        {
+            content: '';
+            position: absolute;
+            border-style: solid;
+            border-width: 23px 0 23px 18px;
+            border-color: transparent #F28DA5;
+            display: block;
+            width: 0;
+            z-index: 0;
+            margin-top: -23px;
+            right: -22px;
+            top: 50%;
+        }
   	</style>
   	<script type="text/javascript">
   		$(function() {
@@ -66,7 +109,7 @@
 		<button id="submit" name="submit">번역</button>
 		<button id="clear" name="clear">지우기</button>
 		<br>
-		<textarea id="inputText" name="inputText" rows="10" cols="40"></textarea>
+		<textarea class="bubble" id="inputText" name="inputText" rows="10" cols="40"></textarea>
 	</div>
     <hr>
     <!-- 번역 결과 -->
@@ -84,7 +127,7 @@
 			<option value="id">인도네시아어</option>
 		</select>
 		<br>
-		<textarea id="translatedResult" name="translatedResult" rows="10" cols="40"></textarea>
+		<textarea class="bubble" id="translatedResult" name="translatedResult" rows="10" cols="40"></textarea>
     </div>
     <br>
     <p>*Reference: 네이버 Papago NMT API (https://developers.naver.com/docs/nmt/reference/)</p>
