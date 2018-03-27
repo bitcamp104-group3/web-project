@@ -3,13 +3,12 @@ var aa=ab=ac=ad=ae=af=ag=ah=ai=aj=ak=al=0
 var datas =[]
 $.ajax({
     url : 'http://openapi.gangnam.go.kr:8088/7842674c6b6a696e35336f50735752/json/GnModelRestaurantDesignate/1/1000/',
-dataType:"json", 
-success:function(responsedata){
+	dataType:"json", 
+	success:function(responsedata){
     $.each(responsedata.GnModelRestaurantDesignate.row, function(index, obj) {
-    	
     	datas.push(obj)
     	
-		if(obj.SNT_UPTAE_NM ==='한식'){
+		if(obj.SNT_UPTAE_NM === '한식'){
 			i++
 		}else if(obj.SNT_UPTAE_NM ==='경양식'){
 			j++
@@ -53,101 +52,81 @@ success:function(responsedata){
     }
 })
 
-
 $(function(){
-	var piecheck = 0
-	
 	$('button').click(function() {
-	$('#display').empty();
-	$('#container').empty();
-})
-
-$('#btn').click(function(){
-	var table = "<table>";
-	table += "<tr><th>num</th><th>지정일자</th><th>업소명</th><th>소재지도로명</th><th>업태명</th><th>주된음식</th><th>행정동명</th><th>소재지전화번호</th></tr>"
-	var num = 1;
-	$.each(datas, function(index, obj) {
-		if($("#line > option:selected").val() == '전체보기'){
-			table += "<tr>";
-			table += "<td>" + (num++) + "</td>";
-			table += "<td>" + obj.ASGN_YMD + "</td>";
-			table += "<td>" + obj.UPSO_NM + "</td>";
-			table += "<td>" + obj.SITE_ADDR_RD + "</td>";
-			table += "<td>" + obj.SNT_UPTAE_NM + "</td>";
-			table += "<td>" + obj.MAIN_EDF + "</td>";
-			table += "<td>" + obj.ADMDNG_NM + "</td>";
-			table += "<td>" + obj.UPSO_SITE_TELNO + "</td>";
-			table += "</tr>";
-		}else if(obj.SNT_UPTAE_NM == $("#line > option:selected").val()){
-	        table += "<tr>";
-			table += "<td>" + (num++) + "</td>";
-	        table += "<td>" + obj.ASGN_YMD + "</td>";
-	        table += "<td>" + obj.UPSO_NM + "</td>";
-	        table += "<td>" + obj.SITE_ADDR_RD + "</td>";
-	        table += "<td>" + obj.SNT_UPTAE_NM + "</td>";
-	        table += "<td>" + obj.MAIN_EDF + "</td>";
-	        table += "<td>" + obj.ADMDNG_NM + "</td>";
-	        table += "<td>" + obj.UPSO_SITE_TELNO + "</td>";
-	        table += "</tr>";
-	    }
-	});
-	table += "</table>";
-	$('#display').html(table);
-});
-
-$('#btn1').click(function() {
-	if($('#chart > option:selected').val() =='spline'){
-		$('#container').attr({style:"height:400px"})
-		Highcharts.chart('container', {
-		    chart: { type: 'spline' },
-		    title: { text: '행정동별 음식점 수' },
-		    subtitle: { text: 'Source: gangnam.go.kr' },
-		    xAxis: { categories: ['개포', '논현', '대치', '도곡', '수서'
-					,'신사', '삼성', '세곡', '일원', '역삼', '압구', '청담'] 
-		    },
-		    yAxis: { 
-		    	title: { text: '음식점 수' },
-		        labels: { 
-		        	formatter: function () { 
-		        		return this.value; 
-	        		} 
-		    	}
-		    }, 
-		    tooltip: { crosshairs: true, shared: true },
-		    plotOptions: {
-		        spline: {
-		            marker: { 
-		            	radius: 4, lineColor: '#777777', lineWidth: 1 
-	            	}
-		        }
-		    },
-		    series: [{ 
-		    	name: '', 
-		    	marker: { symbol: 'square' },
-		        data: [ai, ab, ac, ak, ae, ah, ad, aj, af, ag, al, aa]
-		    }]
+		$('#display').empty();
+		$('#container').empty();
+	})
+	
+	$('#btn').click(function(){
+		var num = 1;
+		var table = "<table id='myTable' class='tablesorter'>";
+		table += "<thead><tr><th>num</th><th>지정일자</th><th>업소명</th><th>소재지도로명</th><th>업태명</th><th>주된음식</th><th>행정동명</th><th>소재지전화번호</th></tr></thead><tbody>"
+		$.each(datas, function(index, obj) {
+			if($("#line > option:selected").val() == '전체보기'){
+				table += "<tr>";
+				table += "<td>" + (num++) + "</td>";
+				table += "<td>" + obj.ASGN_YMD + "</td>";
+				table += "<td>" + obj.UPSO_NM + "</td>";
+				table += "<td>" + obj.SITE_ADDR_RD + "</td>";
+				table += "<td>" + obj.SNT_UPTAE_NM + "</td>";
+				table += "<td>" + obj.MAIN_EDF + "</td>";
+				table += "<td>" + obj.ADMDNG_NM + "</td>";
+				table += "<td>" + obj.UPSO_SITE_TELNO + "</td>";
+				table += "</tr>";
+			}else if(obj.SNT_UPTAE_NM == $("#line > option:selected").val()){
+		        table += "<tr>";
+				table += "<td>" + (num++) + "</td>";
+		        table += "<td>" + obj.ASGN_YMD + "</td>";
+		        table += "<td>" + obj.UPSO_NM + "</td>";
+		        table += "<td>" + obj.SITE_ADDR_RD + "</td>";
+		        table += "<td>" + obj.SNT_UPTAE_NM + "</td>";
+		        table += "<td>" + obj.MAIN_EDF + "</td>";
+		        table += "<td>" + obj.ADMDNG_NM + "</td>";
+		        table += "<td>" + obj.UPSO_SITE_TELNO + "</td>";
+		        table += "</tr>";
+		    }
 		});
+		table += "</tbody></table>";
+		$('#display').html(table);
+		$("#myTable").tablesorter(); 
+	});
+	
+	
+	$('#btn1').click(function() {
+		if($('#chart > option:selected').val() =='spline'){
+			$('#container').attr({style:"height:400px"})
+			Highcharts.chart('container', {
+			    chart: { type: 'spline' },
+			    title: { text: '행정동별 음식점 수' },
+			    subtitle: { text: 'Source: gangnam.go.kr' },
+			    xAxis: { categories: ['개포', '논현', '대치', '도곡', '수서'
+						,'신사', '삼성', '세곡', '일원', '역삼', '압구', '청담'] 
+			    },
+			    yAxis: { 
+			    	title: { text: '음식점 수' },
+			        labels: { 
+			        	formatter: function () { 
+			        		return this.value; 
+		        		} 
+			    	}
+			    }, 
+			    tooltip: { crosshairs: true, shared: true },
+			    plotOptions: {
+			        spline: {
+			            marker: { 
+			            	radius: 4, lineColor: '#777777', lineWidth: 1 
+		            	}
+			        }
+			    },
+			    series: [{ 
+			    	name: '', 
+			    	marker: { symbol: 'square' },
+			        data: [ai, ab, ac, ak, ae, ah, ad, aj, af, ag, al, aa]
+			    }]
+			});
 	}else if($('#chart > option:selected').val() == 'piechart'){
 		$('#container').attr({style:"height:400px"})
-	/*	if(piecheck < 1){
-			Highcharts.setOptions({
-			    colors: Highcharts.map(Highcharts.getOptions().colors, function (color) {
-			        return {
-			            radialGradient: {
-			                cx: 0.5,
-			                cy: 0.3,
-			                r: 0.7
-			            },
-			            stops: [
-			                [0, color],
-			                [1, Highcharts.Color(color).brighten(-0.3).get('rgb')] // darken
-			            ]
-			        };
-			    })
-			}); 
-			piecheck++
-		}*/
-		// Build the chart
 		Highcharts.chart('container', {
 		    chart: {
 		        plotBackgroundColor: null,
@@ -203,16 +182,15 @@ $('#btn1').click(function() {
 			        }
 			        return arr;
 			    }, []);
-
-			Highcharts.chart('container', {
-			    series: [{
-			        type: 'wordcloud',
-			        data: data,
-			        name: 'Occurrences'
-			    }],
-			    title: {
-			        text: '강남구 모범음식점'
-			    }
+				Highcharts.chart('container', {
+				    series: [{
+				        type: 'wordcloud',
+				        data: data,
+				        name: 'Occurrences'
+				    }],
+				    title: {
+				        text: 'Wordcloud of Lorem Ipsum'
+				    }
 			});
 		}
 	})

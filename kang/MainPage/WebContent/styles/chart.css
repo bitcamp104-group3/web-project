@@ -15,12 +15,19 @@ td {
 	padding: 5px;
 }
 
-table tr:nth-child(odd) {
+th {
+	border: .1em solid #fff;
+	background-color: #dcfbff;
+	font-weight: bold;
+	font-size: 14pt;
+}
+
+table tr:nth-child(even) {
 	color: #000;
 	background: #dcfbff
 }
 
-table tr:nth-child(even) {
+table tr:nth-child(odd) {
 	color: #000;
 	background: #FFF
 }
@@ -29,12 +36,6 @@ table tr:hover {
 	background-color: #ffffbb;
 }
 
-table tr:first-child {
-	border: .1em solid #fff;
-	background-color: #dcfbff;
-	font-weight: bold;
-	font-size: 14pt;
-}
 
 #container {
 	min-width: 310px;
