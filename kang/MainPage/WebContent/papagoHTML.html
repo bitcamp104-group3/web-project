@@ -25,11 +25,11 @@
             width: 400px;
             height: 220px;
             padding: 0px;
-            background: #FFF6FF;
+            background: #FFFFFF;
             -webkit-border-radius: 10px;
             -moz-border-radius: 10px;
             border-radius: 10px;
-            border: #F28DA5 solid 4px;
+            border: #003366 solid 4px;
         }
 
         .bubble:after 
@@ -38,7 +38,7 @@
             position: absolute;
             border-style: solid;
             border-width: 20px 0 20px 15px;
-            border-color: transparent #FFF6FF;
+            border-color: transparent #FFFFFF;
             display: block;
             width: 0;
             z-index: 1;
@@ -53,7 +53,7 @@
             position: absolute;
             border-style: solid;
             border-width: 23px 0 23px 18px;
-            border-color: transparent #F28DA5;
+            border-color: transparent #003366;
             display: block;
             width: 0;
             z-index: 0;
@@ -106,8 +106,8 @@
 			<option value="th">태국어</option>
 			<option value="id">인도네시아어</option>
 		</select>
-		<button id="submit" name="submit">번역</button>
-		<button id="clear" name="clear">지우기</button>
+		<button type="button" class="btn btn-default btn-xs" id="submit" name="submit">번역</button>
+		<button type="button" class="btn btn-default btn-xs" id="clear" name="clear">지우기</button>
 		<br>
 		<textarea class="bubble" id="inputText" name="inputText" rows="10" cols="40"></textarea>
 	</div>
